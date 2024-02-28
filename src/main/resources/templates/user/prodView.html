@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/inc/header :: headerFragment"></th:block>
+
+<form th:action="@{/user/cartAdd(pno=${map.get('pno')})}">
+    <div class="container shadow rounded mt-4 p-3 prodViewCon">
+        <div class="createBox">
+            <div>상품 판매</div>
+
+            <div class="d-flex prod-cre">
+                <div class="ImageCard2">
+                    <img th:src="@{'/uploads/'+${map.get('pimage')}}" alt="Image"/>
+                </div>
+                <ul class="prod-side">
+                    <li><i class="fa-regular fa-image"></i> 이미지</li>
+                    <li><i class="fa-solid fa-t"></i> 텍스트</li>
+                    <li>무료 디자인</li>
+                </ul>
+            </div>
+        </div>
+        <div class="prodViewBox">
+            <div class="prod-con">
+                <ul>
+                    <li th:text="${map.get('pname')}" id="pname">상품이름</li>
+                    <li th:text="${#numbers.formatInteger(map.get('price'), 3, 'COMMA') + '원'}">가격</li>
+                </ul>
+                <ul>
+                    <li>사이즈</li>
+                    <li>ㅂ</li>
+                </ul>
+                <ul>
+                    <li>재질</li>
+                    <li>ㅂ</li>
+                </ul>
+
+                <ul>
+                    <li>배송비</li>
+                    <li th:text="${#numbers.formatInteger(map.get('delivery'), 3, 'COMMA') + '원'}">배송비</li>
+                </ul>
+            </div>
+
+            <div class="btn btn-color mt-3 prodViewCart">
+                <!-- 로그인 되었을 경우 -->
+                <th:block th:if="${session.loginDTO != null}">
+                    <a th:href="@{/user/cartAdd(pno=${map.get('pno')})}">장바구니 담기</a>
+                </th:block>
+
+                <!-- 로그인 안되었을 경우 -->
+                <th:block th:if="${session.loginDTO == null}">
+                    <a href="javascript:alert('로그인이 필요합니다')">장바구니 담기</a>
+                </th:block>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<div class="container mt-4">
+    <h3>상세</h3>
+    <!-- 상세 내용 -->
+    <div class="container border-top">
+        <p class="mt-3" th:text="${map.get('pcontent')}"></p>
+    </div>
+</div>
+
+
+<th:block th:replace="/inc/footer :: footerFragment"></th:block>
+</html>

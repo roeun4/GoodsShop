@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="/inc/header :: headerFragment"></th:block>
+
+<!-- content start -->
+<!-- 슬라이드 -->
+<th:block th:replace="/main/slide :: slideFragment"></th:block>
+
+<!-- 공지사항 -->
+<th:block th:replace="/main/notice :: noticeFragment"></th:block>
+
+<!-- 인기상품 -->
+<th:block th:replace="/main/card/cardHit :: cardHFragment"></th:block>
+
+<!-- 최신상품 -->
+<th:block th:replace="/main/card/cardNew :: cardNFragment"></th:block>
+
+<!-- 추천상품 -->
+<th:block th:replace="/main/card/cardRecommend :: cardRFragment"></th:block>
+
+<!-- 자세한 설명 -->
+<th:block th:replace="/main/info :: infoFragment"></th:block>
+<!-- content end -->
+
+<th:block th:replace="/inc/footer :: footerFragment"></th:block>
+
+</html>

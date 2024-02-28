@@ -1,0 +1,37 @@
+server:
+  port: 8884
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+---
+spring:
+  devtools:
+    livereload:
+      enabled: true
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:log4jdbc:mysql://localhost:3306/testdb
+    username: test
+    password: 1234
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/testdb
+
+mybatis:
+  mapper-locations: classpath:sqlMapper/*.xml
+  type-aliases-package: kr.ezen.sample.domain
+
+
+# 파일 업로드 용량
+---
+spring:
+  servlet:
+    multipart:
+      location: C:\\Download\\sample
+      maxFileSize : 50MB
+      maxRequestSize : 50MB
+

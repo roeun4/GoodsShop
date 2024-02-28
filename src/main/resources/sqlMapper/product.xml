@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ezen.sample.Mapper.ProductMapper">
+    <sql id="criteria">
+        <if test="searchType == 'PN'.toString()">
+            WHERE pname LIKE CONCAT('%', #{keyword},'%')
+        </if>
+    </sql>
+
+    <select id="getListAll" resultType="ProductVo">
+        SELECT * FROM sproduct
+    </select>
+
+    <select id="getList" resultType="ProductVo">
+        SELECT * FROM sproduct
+        <include refid="criteria" />
+        ORDER BY pno DESC
+        LIMIT #{startIndex}, #{cntPerPage}
+    </select>
+
+    <select id="getList2" resultType="ProductVo">
+        SELECT * FROM sproduct
+        ORDER BY pno DESC
+        LIMIT #{startIndex2}, #{cntPerPage2}
+    </select>
+
+    <select id="productCount" resultType="Integer">
+        SELECT count(*) FROM sproduct
+        <include refid="criteria" />
+    </select>
+
+    <select id="productCount2" resultType="Integer">
+        SELECT count(*) FROM sproduct
+        <include refid="criteria" />
+    </select>
+
+    <select id="getCategoryList" resultType="CategoryVo">
+        SELECT * FROM c_category ORDER BY cnum DESC
+    </select>
+
+    <select id="getListOne" resultType="map">
+        SELECT * FROM sproduct
+        WHERE pno = CAST(#{pno} AS SIGNED)
+    </select>
+
+    <insert id="prodInsert" parameterType="map">
+        INSERT INTO sproduct(pname, pspec, pcate_fk, pimage, pcompany, delivery, price, pcontent)
+        VALUES(#{pname}, #{pspec}, #{pcate_fk}, #{pimage}, #{pcompany}, #{delivery}, #{price}, #{pcontent})
+    </insert>
+
+    <update id="prodModify" parameterType="map">
+        UPDATE sproduct
+        SET pcate_fk = #{pcate_fk}, pname = #{pname}, pimage = #{pimage}, pcompany = #{pcompany}, delivery = #{delivery}, price = CAST(#{price} AS SIGNED), pcontent = #{pcontent}
+        WHERE pno = CAST(#{pno} AS SIGNED)
+    </update>
+
+    <delete id="productDel">
+        DELETE FROM sproduct
+        WHERE pno = #{pno}
+    </delete>
+
+    <select id="categoryList">
+        SELECT * FROM sproduct , c_category
+        WHERE pcate_fk = #{pcate_fk} AND cname = #{cname}
+    </select>
+
+
+</mapper>

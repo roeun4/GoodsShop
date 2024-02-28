@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="inc/header :: headerFragment"></th:block>
+
+<div class="container">
+    <h3 class="mt-4 mb-4 text-center">장바구니</h3>
+       <input type="text" th:value="${session.loginDTO.username}">
+
+<!--    <form id="formTable" action="/member/memsModify" method="post">-->
+        <table class="table text-center mt-3 table-hover">
+            <thead>
+            <tr>
+                <th>선택</th>
+                <th>상품명</th>
+<!--                <th>이미지</th>-->
+                <th>수량</th>
+                <th>가격</th>
+<!--                <th>삭제</th>-->
+            </tr>
+            </thead>
+            <tbody>
+
+                <th:block th:each="cart : ${cartList}">
+                    <tr>
+                        <td><input type="checkbox" name="chkId" th:value="${cart.cart_no}"></td>
+                        <td th:text="${cart.pname}">상품명</td>
+    <!--                    <td th:text="${cart.pimage}">이미지</td>-->
+                        <td th:text="${cart.pqty}">수량</td>
+                        <td th:text="${cart.price}">가격</td>
+    <!--                    <td><a class="btn btn-danger btn-sm" th:href="@{/user/userDel(id=${user.id})}">삭제</a></td>-->
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+<!--    </form>-->
+
+</div>
+
+<div class="mt3">
+<th:block th:replace="/inc/footer :: footerFragment"></th:block>
+</div>
+</html>

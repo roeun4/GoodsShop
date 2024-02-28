@@ -1,0 +1,405 @@
+@charset "utf-8";
+
+
+ul{list-style: none;}
+a{
+    color: #333;
+    text-decoration: none;
+}
+
+.BoxC{
+    width:700px;
+    margin:auto;
+}
+.control-s{
+    width:100%;
+}
+
+.h-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu{
+    display: flex;
+}
+.menu>li{
+    width: 80px;
+    text-align: center;
+    line-height: 40px;
+}
+.c-line{
+    text-align: center;
+    line-height: 40px;
+    margin: 0 10px;
+}
+
+/* 커서 */
+.no-cursor{
+    cursor: default;
+    line-height: 40px;
+}
+
+nav.navbar{
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-link:hover{
+    font-weight: bold;
+}
+
+.f-border{
+    border-top: 1px solid #eee;
+}
+
+.form-group{
+    width: 400px;
+    margin: auto;
+}
+.login-top{
+    margin-top: 120px;
+    width: 500px;
+    padding: 30px;
+}
+.mt{
+    margin-top:19%;
+}
+.mt2{
+    margin-top:9%;
+}
+.mt3{
+    margin-top:5%;
+}
+/* 버튼 색상과 마우스오버 */
+.btn-color{
+    background-color: #8AB6DB;
+    color: white;
+    width: 400px;
+}
+.btn-color:hover{
+    background-color: #15609f;
+    color: white;
+}
+
+/* 아이디/비밀번호 찾기 */
+.id-pw-find{
+    width: 400px;
+    margin: auto;
+    font-size: 14px;
+}
+
+/* 검색 */
+#search{
+    border: 1px solid #aaa;
+    border-radius: 100px;
+    padding: 2px 10px;
+}
+
+.register-label{
+    width: 100px;
+    line-height: 38px;
+}
+
+.register-t{
+    width: 500px;
+}
+
+/* 상품등록시 이미지 사이즈 권장 */
+.size-notice{
+    margin-left:-18px;
+}
+
+.list-h144{
+    line-height:128px;
+}
+
+
+/* 상품카드 */
+.Card{
+    width:310px;
+    height: 480px;
+    left:0px;
+    top:0px;
+    margin: 0 7px;
+    overflow:hidden;
+}
+
+/* 상품 이미지 */
+.ImageCard{
+    width:100%;
+    border-radius:10px;
+    overflow:hidden;
+}
+.ImageCard img{
+    width:100%;
+    height:340px;
+
+    -webkit-transform: scale(1);
+    transform: scale(1);
+   	-webkit-transition: .5s ease-in-out;
+   	transition: .5s ease-in-out;
+} /* 이미지 확대 */
+.ImageCard:hover img {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.13);
+}
+
+.ContentBox{
+    display:flex;
+    justify-content:space-between;
+}
+
+/* 상품 내용 */
+.ContentCard{
+    padding: 10px 0;
+    line-height:30px;
+}
+
+.review{
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* 상품 리스트들이 넘치면 다음줄 이동 */
+.flex-container{
+    display: inline-flex;
+    flex-flow: row wrap;
+}
+.flex-container.stretch{
+    align-content: stretch;
+}
+.p-box{
+    width:100%;
+    height:495px;
+    overflow:hidden;
+}
+
+/* 상품 상세보기 */
+.prodViewCon{
+    padding:0px;
+    display:flex;
+    justify-content:space-between;
+}
+.prodViewCon ul{
+    padding: 0px;
+}
+
+
+.createBox{
+    width:890px;
+    height:500px;
+}
+.ImageCard2{width:420px; margin:auto;}
+.ImageCard2 img{
+    width:100%;
+    height:450px;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.prodViewBox{
+    width: 350px;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+.prodViewCart{
+    width:350px;
+}
+.prodViewCart a{display:block; color:white;}
+.prodViewBox #pname{
+    font-size:20px;
+}
+
+.prod-cre{
+    position:relative;
+}
+.prod-side{
+    position:absolute;
+    right:0;
+    top:28%;
+}
+.prod-side li{
+    width:120px;
+    line-height:30px;
+    border:1px solid #aaa;
+    padding:0 8px;
+    border-radius:100px;
+    margin-bottom:10px;
+    text-align:center;
+}
+.prod-con{height:430px;}
+
+
+.hide{display:none;}
+.show{display:block;}
+
+.nos-btn{
+    background:none;
+    border:none;
+    color:white;
+}
+
+/* 공지사항 */
+.notice-container{
+    height:150px;
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+    overflow:hidden;
+}
+.notice{
+    width:100%;
+    height:160px;
+}
+.notice-title{
+    margin-top:40px;
+}
+.notice-BoxL{
+    width:300px;
+}
+.notice-Boxm{
+    position:absolute;
+    left:560px;
+    top:0;
+    display:flex;
+}
+.Boxm{
+    width:230px;
+    height:150px;
+/*    border:1px solid #eee;
+    border-radius:10px;*/
+    border-right: 1px solid #eee;
+    margin: 0px 20px;
+    padding: 40px 10px;
+}
+
+.Boxm a{
+    font-size:14px;
+}
+
+.noticeView{
+    width:100%;
+}
+.noticeCon{
+    display:flex;
+}
+.textP{
+    padding-left:20px;
+}
+.textP1{
+    padding-bottom:5px;
+}
+.textP2{
+    padding-top:15px;
+}
+.textPH3{
+    width:200px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 원하는 줄 수 표시 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.myPro{
+    width:100%;
+    height:600px;
+    display:flex;
+}
+.myPro-l{
+    width:180px;
+    height:100%;
+    margin-right:50px;
+}
+.myPro-lUl{
+    margin:0;
+    padding:0;
+}
+.myPro-t{
+    font-size:20px;
+    font-weight:bold;
+    padding: 5px 15px;
+}
+.myPro-lUl li{
+    line-height:34px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 5px 15px;
+    display:block;
+}
+.myPro-hover{
+    background:#8AB6DB;
+    color:white;
+}
+.myPro-r{
+    width:100%;
+}
+.profile{
+    width:500px;
+    margin:auto;
+    padding:20px 25px;
+    border:1px solid #eee;
+}
+.proBoxs{
+    display:flex;
+    line-height:38px;
+    margin: 15px 0;
+}
+.proBoxs-t{
+    width:80px;
+}
+.userDelete{
+    width:300px;
+    padding:20px;
+    margin:auto;
+}
+
+
+/* footer 전 */
+.infoCon{
+    display:flex;
+    justify-content:space-between;
+    height:180px;
+}
+
+.infoMenus{
+    display:flex;
+    justify-content:space-between;
+}
+
+.infoMenu{
+    margin-left:50px;
+    font-size:15px;
+    line-height:28px;
+}
+
+.infoMenuT{
+    font-weight:bold;
+    line-height:26px;
+}
+
+.infoMenuCon{
+    padding:0;
+}
+.infoMenuCon li{
+    margin-right:10px;
+}
+
+/* footer */
+.footer1{
+    margin:0;
+    padding:0;
+    display:flex;
+    width:210px;
+    justify-content:space-between;
+}
+.footerM{
+    font-size:14px;
+    display:flex;
+}
+.footerM div{
+    margin-right:15px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="cardRFragment">
+
+<h3 class="text-center mt-5">추천상품</h3>
+<div class="container mt-2 d-flex p-box flex-container stretch">
+    <th:block th:each="product : ${list}">
+        <th:block th:if="${product.pspec == '추천'}">
+        <div class="Card mt-3">
+            <!--이미지-->
+            <div class="ImageCard">
+                <a th:href="@{/user/prodView(pno=${product.pno})}">
+                    <img th:src="@{'/uploads/'+${product.pimage}}" alt="Image"/>
+                </a>
+            </div>
+            <div class="ContentBox">
+                <!--내용물-->
+                <ul class="ContentCard">
+                    <li th:text="${product.pcompany}" style="font-size:14px;">회사</li>
+                    <li th:text="${product.pname}" style="font-size:18px;">상품이름</li>
+                    <li th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}">가격</li>
+                    <li class="review">리뷰</li>
+                </ul>
+                <div class="dibs mt-2">
+                    <i class='far fa-heart fa-2x show' style="color:#aaa;" id="heart1"></i>
+                    <i class="fa-solid fa-heart fa-2x hide" style="color:#F3C4D6;" id="heart2"></i>
+                </div>
+            </div>
+        </div>
+    </th:block>
+    </th:block><!-- each -->
+</div>
+
+<script src="/js/heart.js"></script>
+</th:block>
+
+</html>

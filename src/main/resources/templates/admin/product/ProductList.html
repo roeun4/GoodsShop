@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/admin/aInc/header :: headerFragment"></th:block>
+
+<div class="container">
+    <h3 class="mt-5 mb-4 text-center">상품 리스트</h3>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <div th:text="${page.viewPage} + '/' "></div>
+            <div th:text="${page.totalPage} + '페이지'"></div>
+        </div>
+
+        <div style="float: right; margin-bottom:30px;">
+            <form name="search-from" autocomplete="off">
+                <select name="searchType" class="ms-3" style="padding: 2px;">
+                    <option value="PN" th:classappend="${page.searchType == 'PN'} ? 'selected':''">상품이름</option>
+                </select>
+
+                    <input type="text" name="keyword" value="">
+                    <button type="submit" class="btn btn-color" style="width:70px; height:30px; line-height:17px;" onclick="getSearchList()">검색</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table text-center mt-3 table-hover">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>상품사양</th>
+                <th>상품이름</th>
+                <th>카테고리</th>
+                <th>상품 이미지</th>
+                <th>제조회사</th>
+                <th>배송비</th>
+                <th>가격</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="product : ${list}">
+                <tr class="list-h144">
+                    <td th:text="${product.pno}">번호</td>
+                    <td th:text="${product.pspec}">사양</td>
+                    <td>
+                        <a th:href="@{/admin/pModify(pno=${product.pno})}">
+                            <span th:text="${product.pname}">이름</span>
+                        </a>
+                    </td>
+                    <td th:text="${product.pcate_fk}">카테고리</td>
+                    <td>
+                        <a th:href="@{/admin/pModify(pno=${product.pno})}">
+                        <img th:src="@{'/uploads/'+${product.pimage}}" alt="Image" style="width:120px;"/>
+                        </a>
+                    </td>
+                    <td th:text="${product.pcompany}">제조회사</td>
+                    <td th:text="${#numbers.formatInteger(product.delivery, 3, 'COMMA') + '원'}">배송비</td>
+                    <td th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}">가격</td>
+<!--                    <td th:text="${product.pspec}">상품사양</td>-->
+                    <td><a class="btn btn-danger btn-sm" th:href="@{/product/productDel(pno=${product.pno})}">삭제</a></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+
+    <ul class="pagination justify-content-center">
+
+        <li class="page-item" th:classappend="${page.prevPage} <= 0 ? disabled">
+            <a class="page-link" th:href="@{/admin/product(viewPage=${page.prevPage})}">이전</a>
+        </li>
+
+        <th:block th:each="i : ${#numbers.sequence(page.blockStart, page.blockEnd)}">
+            <th:block th:if="${i != 0}">
+                <li class="page-item" th:classappend="${page.viewPage == i} ? 'active':''">
+                    <a class="page-link" th:href="@{/admin/product(viewPage=${i})}">[[${i}]]</a>
+                </li>
+            </th:block>
+        </th:block>
+
+        <li class="page-item" th:classappend="${page.blockEnd >= page.totalPage} ? 'disabled':''">
+            <a class="page-link" th:href="@{/admin/product(viewPage=${viewPage${i})}}">다음</a>
+        </li>
+    </ul>
+
+    <div class="text-center">
+        <a class="btn btn-color" href="/admin/pRegister">상품 등록</a>
+    </div>
+</div>
+
+<script src="../js/serch"></script>
+<th:block th:replace="/admin/aInc/footer :: footerFragment"></th:block>
+</html>

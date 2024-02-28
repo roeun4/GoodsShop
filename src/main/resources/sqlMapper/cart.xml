@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ezen.sample.Mapper.CartMapper">
+
+    <select id="getCartList" resultType="kr.ezen.sample.domain.CartVo">
+        SELECT c.cart_no, c.username, c.pno, c.pqty, c.price, p.pno, p.pimage, p.pname, p.price
+        FROM scart c, sproduct p, suser u
+        WHERE p.pno = c.pno
+        AND c.username = #{c.username}
+        AND u.username = c.username
+    </select>
+
+    <insert id="cartAdd" parameterType="CartVo">
+        INSERT INTO scart(username, pno, pqty, price)
+        VALUES(#{username}, #{pno}, #{pqty}, #{price})
+    </insert>
+
+
+</mapper>

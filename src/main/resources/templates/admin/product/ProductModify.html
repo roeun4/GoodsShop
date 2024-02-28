@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/admin/aInc/header :: headerFragment"></th:block>
+
+<div class="container">
+    <div class="shadow p-5 rounded mt-4 BoxC">
+        <h3 class="text-center">상품 수정</h3>
+        <form th:action="@{/admin/pModify}" method="post" name="pModify" enctype="multipart/form-data">
+            <div class="control-s mt-3">
+                <div class="d-flex">
+                    <label class="register-label">상품번호</label>
+                    <input class="form-control" th:value="${map.get('pno')}" readonly>
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">카테고리</label>
+                    <select class="form-select form-select-sm" name="pcate_fk">
+                        <th:if test="${list == null || list.size() == 0}">
+                            <option value="">카테고리 선택</option>
+                        </th:if>
+                        <th:if test="${list != null || list.size() != 0}">
+                            <th:block th:each="cate : ${list}">
+                                <option th:text="${cate.cname}" th:selected="${cate.cname} == ${map.get('pcate_fk')}"></option>
+                            </th:block>
+                        </th:if>
+                    </select>
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">상품이름</label>
+                    <input type="text" class="form-control" name="pname" id="pname" th:value="${map.get('pname')}">
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">이미지</label>
+                    <input type="file" name="pimage" id="pimage" accept="image/*" class="form-control">
+                </div>
+                <div class="d-flex mt-1 size-notice">
+                    <label class="register-label"></label>
+                    <span style="font-size:13px;">사이즈는 310x340을 권장합니다.</span>
+                </div>
+                <div class="mt-2">
+                    <label class="register-label" style="font-size:13px;">
+                        현재 이미지
+                    </label>
+                    <img th:src="@{'/uploads/'+${map.get('pimage')}}" alt="Image" style="width:200px;"/><br>
+                    <div th:text="${map.get('pimage')}" style="margin-left:94px;"></div>
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">제조회사</label>
+                    <input type="text" class="form-control" name="pcompany" id="pcompany" th:value="${map.get('pcompany')}">
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">배송비</label>
+                    <input type="text" class="form-control" name="delivery" id="delivery" th:value="${#numbers.formatInteger(map.get('delivery'), 3, 'COMMA')}">
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">가격</label>
+                    <input type="text" class="form-control" name="price" id="price" th:value="${#numbers.formatInteger(map.get('price'), 3, 'COMMA')}">
+                </div>
+            </div>
+            <div class="control-s mt-2">
+                <div class="d-flex">
+                    <label class="register-label">상품상세</label>
+                    <textarea class="form-control" name="pcontent" id="pcontent" th:text="${map.get('pcontent')}" cols="2"></textarea>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-color" onclick="pModifyChk()">수정하기</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script src="../js/product.js"></script>
+
+<th:block th:replace="/admin/aInc/footer :: footerFragment"></th:block>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="noticeFragment">
+    <div class="notice mt-3">
+        <div class="container notice-container">
+
+            <div class="notice-BoxL">
+                <h2 class="notice-title"><a href="/user/noticeList">공지사항</a></h2>
+                <p style="font-size:14px;">
+                    중요한 내용들이 있어요<br>
+                    꼭 읽어 주세요!
+                </p>
+            </div>
+
+            <div class="notice-Boxm">
+                <th:block th:each="notice : ${noticeList}">
+                    <div class="Boxm">
+                        <h4 th:text="${notice.title}" class="textPH3">제목</h4>
+                        <a th:href="@{/user/noticeView(no=${notice.no})}">더보기 ></a>
+                    </div>
+                </th:block>
+            </div>
+
+        </div>
+    </div>
+
+</th:block>
+</html>

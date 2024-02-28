@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/inc/header :: headerFragment"></th:block>
+
+<h3 class="text-center mt-5">모든 상품</h3>
+<div class="container mt-2 d-flex flex-container">
+    <th:block th:each="product : ${list}">
+        <div class="Card mt-3">
+            <!--이미지-->
+            <div class="ImageCard">
+                <a th:href="@{/user/prodView(pno=${product.pno})}">
+                    <img th:src="@{'/uploads/'+${product.pimage}}" alt="Image"/>
+                </a>
+            </div>
+            <div class="ContentBox">
+                <!--내용물-->
+                <ul class="ContentCard">
+                    <li th:text="${product.pcompany}" style="font-size:14px;">회사</li>
+                    <li th:text="${product.pname}" style="font-size:18px;">상품이름</li>
+                    <li th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}">가격</li>
+                    <li class="review">리뷰</li>
+                </ul>
+                <div class="dibs mt-2">
+                    <i class='far fa-heart fa-2x' style="color:#aaa;"></i>
+                </div>
+            </div>
+        </div>
+    </th:block><!-- each -->
+
+</div>
+
+<ul class="pagination justify-content-center mt-3">
+
+    <li class="page-item" th:classappend="${page.prevPage} <= 0 ? disabled">
+        <a class="page-link" th:href="@{/user/prodAll(viewPage=${page.prevPage})}">이전</a>
+    </li>
+
+    <th:block th:each="i : ${#numbers.sequence(page.blockStart, page.blockEnd)}">
+        <th:block th:if="${i != 0}">
+            <li class="page-item" th:classappend="${page.viewPage == i} ? 'active':''">
+                <a class="page-link" th:href="@{/user/prodAll(viewPage=${i})}">[[${i}]]</a>
+            </li>
+        </th:block>
+    </th:block>
+
+    <li class="page-item" th:classappend="${page.blockEnd >= page.totalPage} ? 'disabled':''">
+        <a class="page-link" th:href="@{/user/prodAll(viewPage=${viewPage${i})}}">다음</a>
+    </li>
+</ul>
+
+
+<th:block th:replace="/inc/footer :: footerFragment"></th:block>
+</html>

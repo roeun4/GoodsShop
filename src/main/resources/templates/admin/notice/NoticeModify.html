@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/admin/aInc/header :: headerFragment"></th:block>
+<div class="container">
+    <div class="shadow p-5 rounded mt-4 BoxC">
+        <h3 class="text-center">공지사항 수정</h3>
+        <form th:action="@{/admin/noticeModifyPost}" method="post" name="noticeModify">
+
+            <th:block th:each="notice : ${list}">
+                <div class="mt-3 d-flex control-s">
+                    <input type="text" class="form-control" name="writer" id="writer" placeholder="작성자" th:value="${notice.writer}" style="width:120px;" readonly>
+                    <input type="text" class="form-control ms-auto" name="InDate" id="InDate" placeholder="작성일"  th:value="${#dates.format(notice.InDate, 'yyyy-MM-dd')}" style="width:160px;" readonly>
+                </div>
+
+                <div class="mt-3 control-s">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="제목" th:value="${notice.title}">
+                </div>
+
+                <div class="mt-2 control-s">
+                    <textarea class="form-control" name="content" id="content" placeholder="내용" style="height:300px;" th:text="${notice.content}"></textarea>
+                </div>
+            </th:block>
+
+            <div class="text-center mt-4 d-flex;">
+                <button type="button" class="btn btn-color" onclick="noticeModifyChk()" style="width:100px;">수정하기</button>
+                <a type="button" class="btn btn-secondary" href="javascript:history.back();" style="width:80px;">뒤로</a>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+<script src="../js/notice.js"></script>
+
+<th:block th:replace="/admin/aInc/footer :: footerFragment"></th:block>
+</html>

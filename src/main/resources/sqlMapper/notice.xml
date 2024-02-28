@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ezen.sample.Mapper.NoticeMapper">
+    <!-- 공지사항 목록 -->
+    <!-- 페이징 처리중(진행형) -->
+    <select id="getList" resultType="kr.ezen.sample.domain.NoticeVo">
+        SELECT * FROM notice
+        ORDER BY no DESC
+        LIMIT #{startIndex}, #{cntPerPage}
+    </select>
+
+    <select id="noticeCount" resultType="Integer">
+        SELECT count(*) FROM notice
+    </select>
+
+    <!-- 공지사항 등록 -->
+    <insert id="noticeIn" parameterType="kr.ezen.sample.domain.NoticeVo">
+        INSERT INTO notice(title, content, writer)
+        VALUES(#{title}, #{content}, #{writer})
+    </insert>
+
+    <!-- 공지사항 수정의 하나의 글 -->
+    <select id="getListOne" resultType="kr.ezen.sample.domain.NoticeVo">
+        SELECT * FROM notice
+        WHERE no = #{no}
+    </select>
+
+    <update id="noticeUpdate" parameterType="NoticeVo">
+        UPDATE notice SET title = #{title}, content = #{content}
+        WHERE no = #{no}
+    </update>
+
+    <!-- 공지사항 삭제 -->
+    <delete id="noticeDel">
+        DELETE FROM notice
+        WHERE no = #{no}
+    </delete>
+
+</mapper>

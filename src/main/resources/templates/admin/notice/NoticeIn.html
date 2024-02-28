@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/admin/aInc/header :: headerFragment"></th:block>
+
+<div class="container shadow p-5 rounded mt-4 register-t">
+    <h3 class="text-center">공지사항 등록</h3>
+    <form class="form-join" th:action="@{/admin/noticeInPost}" method="post" name="NoticeIn">
+        <div class="form-group mt-3">
+            <input type="text" class="form-control" name="title" id="title" placeholder="제목">
+        </div>
+
+        <div class="form-group mt-2">
+            <textarea class="form-control" name="content" id="content" placeholder="내용" style="height:300px;"></textarea>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-color" onclick="noticeChk()">등록하기</button>
+        </div>
+    </form>
+</div>
+<script src="../js/notice.js"></script>
+
+<th:block th:replace="/admin/aInc/footer :: footerFragment"></th:block>
+</html>
