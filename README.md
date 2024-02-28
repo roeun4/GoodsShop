@@ -1,4 +1,4 @@
 # GoodsShop
 
-## Goods Shop ppt와
-## 만든 파일 저장소
+Goods Shop ppt와
+만든 파일 저장소
