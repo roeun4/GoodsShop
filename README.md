@@ -1,4 +1,8 @@
 # GoodsShop
+Goods Shop 저장소
 
-Goods Shop ppt와
-만든 파일 저장소
+## main
+ppt, zip 파일
+
+## master
+세세한 내용
